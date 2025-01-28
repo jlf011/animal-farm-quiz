@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Which Animal Farm Animal Are You?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .quiz-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .question h3 {
+      color: #555;
+    }
+    .answers {
+      margin-left: 20px;
+    }
+    .answers label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    button {
+      display: block;
+      margin: 20px auto;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      text-align: center;
+      font-size: 18px;
+      color: #333;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Which Animal Farm Animal Are You?</h1>
+  <div class="quiz-container">
+    <div class="question" id="q1">
+      <h3>1. When there’s a group project, how do you usually contribute?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q1" value="A"> I follow instructions and do what’s asked of me.</label>
+        <label><input type="radio" name="q1" value="B"> I put in the hard work and make sure the project gets done.</label>
+        <label><input type="radio" name="q1" value="C"> I take the lead and decide how things should go.</label>
+        <label><input type="radio" name="q1" value="D"> I make sure everyone sticks to the plan and stays on task.</label>
+      </div>
+    </div>
+    <div class="question" id="q2">
+      <h3>2. How do you feel about rules?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q2" value="A"> Rules are made to be followed—no questions asked.</label>
+        <label><input type="radio" name="q2" value="B"> Rules are important, but it’s more important to work hard for what’s right.</label>
+        <label><input type="radio" name="q2" value="C"> Rules are useful, especially when I’m the one making them.</label>
+        <label><input type="radio" name="q2" value="D"> Rules keep order, and I’m here to enforce them.</label>
+      </div>
+    </div>
+    <div class="question" id="q3">
+      <h3>3. If someone tells you something that sounds suspicious, what do you do?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q3" value="A"> Believe them. Why would they lie?</label>
+        <label><input type="radio" name="q3" value="B"> Question them a little, but mostly trust their intentions.</label>
+        <label><input type="radio" name="q3" value="C"> Analyze what they’re saying and see if it benefits me.</label>
+        <label><input type="radio" name="q3" value="D"> Investigate it thoroughly before taking action.</label>
+      </div>
+    </div>
+    <div class="question" id="q4">
+      <h3>4. How do you feel about hard work?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q4" value="A"> I’ll do what’s expected of me, as long as everyone else is too.</label>
+        <label><input type="radio" name="q4" value="B"> I live to work hard—it’s what I do best!</label>
+        <label><input type="radio" name="q4" value="C"> Hard work is important, but I’d rather oversee and delegate.</label>
+        <label><input type="radio" name="q4" value="D"> I’ll work hard to protect what matters most.</label>
+      </div>
+    </div>
+    <div class="question" id="q5">
+      <h3>5. What’s your opinion on leadership?</h3>
+      <div class="answers">
+        <label><input type="radio" name="q5" value="A"> Leaders are there to guide us—we should trust them.</label>
+        <label><input type="radio" name="q5" value="B"> Good leaders are those who work just as hard as everyone else.</label>
+        <label><input type="radio" name="q5" value="C"> I think I’d make a great leader—I know what’s best for the group.</label>
+        <label><input type="radio" name="q5" value="D"> Leadership is about protecting and enforcing what’s right.</label>
+      </div>
+    </div>
+    <button onclick="calculateResult()">Submit</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateResult() {
+      const answers = {
+        A: 0,
+        B: 0,
+        C: 0,
+        D: 0
+      };
+
+      for (let i = 1; i <= 5; i++) {
+        const question = document.querySelector(`input[name="q${i}"]:checked`);
+        if (question) {
+          answers[question.value]++;
+        }
+      }
+
+      let max = 0;
+      let result = "";
+
+      for (const [key, value] of Object.entries(answers)) {
+        if (value > max) {
+          max = value;
+          result = key;
+        }
+      }
+
+      const resultText = {
+        A: "You’re a Sheep! 🐑 Loyal and trusting, but be cautious about who you follow.",
+        B: "You’re a Horse! 🐴 Hardworking and dependable, but don’t overwork yourself.",
+        C: "You’re a Pig! 🐖 A natural leader, but use your influence responsibly.",
+        D: "You’re a Dog! 🐕 Loyal and protective, but don’t follow orders blindly."
+      };
+
+      document.getElementById("result").innerText = resultText[result] || "Please answer all the questions to get your result!";
+    }
+  </script>
+</body>
+</html>
